@@ -23,11 +23,7 @@ public class MethodCounter {
      */
     public void count(String methodName) {
         Integer methodCount = methodCountMap.get(methodName);
-        if (methodCount == null) {
-            methodCount = 1;
-        } else {
-            methodCount++;
-        }
+        methodCount = (methodCount != null) ? new Integer(methodCount + 1) : new Integer(1);
         logger.info("对方法{}进行次数加1，当前次数为:{}", methodName, methodCount);
         methodCountMap.put(methodName, methodCount);
     }
