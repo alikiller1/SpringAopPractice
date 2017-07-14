@@ -35,6 +35,7 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+
         <!-- guava不用多说 -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -42,7 +43,7 @@
             <version>22.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <!-- jackson 接口返回json用 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
