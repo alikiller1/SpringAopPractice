@@ -1,7 +1,7 @@
 package org.kingszelda.version1.service;
 
-import org.kingszelda.dao.AddDao;
-import org.kingszelda.dao.SubDao;
+import org.kingszelda.common.dao.AddDao;
+import org.kingszelda.common.dao.SubDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
