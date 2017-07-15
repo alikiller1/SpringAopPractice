@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * Created by shining.cui on 2017/7/15.
  */
 @Service
-@RequestMapping("version1")
 public class CalculateService {
 
     private static final Logger logger = LoggerFactory.getLogger(CalculateService.class);

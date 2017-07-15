@@ -10,4 +10,19 @@
     <context:component-scan base-package="org.kingszelda"/>
     <mvc:annotation-driven/>
 
+    <bean id="calculateServiceV2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="org.kingszelda.version2.service.CalculateService"/>
+        <property name="target" value="org.kingszelda.version2.service.impl.CalculateServiceImpl"/>
+        <property name="interceptorNames">
+            <list>
+                <value>otherAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="otherAdvisor" class="org.springframework.aop.support.DefaultIntroductionAdvisor">
+        <constructor-arg ref="calculateBeforeAdvice"/>
+        <!--<constructor-arg ref="calculateBeforeAdvice"/>-->
+    </bean>
+
 </beans>

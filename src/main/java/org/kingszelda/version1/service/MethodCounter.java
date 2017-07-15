@@ -15,7 +15,7 @@ public class MethodCounter {
 
     private static final Logger logger = LoggerFactory.getLogger(MethodCounter.class);
 
-    //防止并发
+    //key-方法名，value-调用次数
     private static final Map<String, Integer> methodCountMap = Maps.newConcurrentMap();
 
     /**
