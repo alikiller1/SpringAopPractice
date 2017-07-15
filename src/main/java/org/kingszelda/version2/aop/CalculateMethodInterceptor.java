@@ -19,7 +19,7 @@ public class CalculateMethodInterceptor implements IntroductionInterceptor {
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
         //1.获得计算开始时间
         long start = System.currentTimeMillis();
-        String methodName = methodInvocation.getMethod().getName();
+        String methodName = methodInvocation.getMethod().getDeclaringClass().getSimpleName() + "." + methodInvocation.getMethod().getName();
         //2.运行程序
         Object proceed = methodInvocation.proceed();
         //3.打印间隔时间
