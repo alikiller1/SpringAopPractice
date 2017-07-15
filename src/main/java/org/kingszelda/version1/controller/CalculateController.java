@@ -16,8 +16,6 @@ import java.util.Map;
 @RestController
 public class CalculateController {
 
-    private static final Logger logger = LoggerFactory.getLogger(CalculateController.class);
-
     @Resource
     private CalculateService calculateService;
 
