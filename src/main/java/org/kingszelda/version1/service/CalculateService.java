@@ -5,6 +5,7 @@ import org.kingszelda.common.dao.SubDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
  * Created by shining.cui on 2017/7/15.
  */
 @Service
+@RequestMapping("version1")
 public class CalculateService {
 
     private static final Logger logger = LoggerFactory.getLogger(CalculateService.class);
