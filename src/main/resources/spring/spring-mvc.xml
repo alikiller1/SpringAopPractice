@@ -3,8 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--spring mvc注解默认配置-->
     <context:component-scan base-package="org.kingszelda"/>
@@ -13,13 +14,13 @@
     <bean id="calculateServiceV2" class="org.springframework.aop.framework.ProxyFactoryBean">
         <!-- 需要代理的接口 -->
         <property name="proxyInterfaces" value="org.kingszelda.version2.service.CalculateService"/>
-        <!-- 被代理的实体 -->
+        <!-- 被代理的实体，一定要是上面接口的实现类 -->
         <property name="target">
             <bean class="org.kingszelda.version2.service.impl.CalculateServiceImpl"/>
         </property>
         <!-- 调用代理对象方法时的额外操作 -->
         <property name="interceptorNames">
-            <!--这里的顺序对责任链顺序有直接影响，所以能合并的应当合并在一个过滤器中，本例都可以融合到middleInterceptor中-->
+            <!--这里的顺序对责任链顺序有直接影响，所以能合并的都可以合并在一个过滤器中，本例都可以合并到middleInterceptor中-->
             <list>
                 <value>middleInterceptor</value>
                 <value>beforeAdvisor</value>
@@ -48,7 +49,10 @@
 
     <!-- 定义切点位置，只有满足正则的才拦截，如果不配置切点，则拦截所有接口方法 -->
     <bean id="pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-        <property name="pattern" value=".*add|.*sub"/>
+        <property name="pattern" value=".*version2.*add|.*version2.*sub"/>
     </bean>
+
+    <!-- 集成AspectJ的AOP功能 -->
+    <aop:aspectj-autoproxy />
 
 </beans>

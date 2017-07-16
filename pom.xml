@@ -62,5 +62,12 @@
             <version>1.9.13</version>
         </dependency>
 
+        <!-- Spring 集成AspectJ时依赖的jar -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.10</version>
+        </dependency>
+
     </dependencies>
 </project>
