@@ -3,12 +3,14 @@ package org.kingszelda.version2.service.impl;
 import org.kingszelda.common.dao.AddDao;
 import org.kingszelda.common.dao.SubDao;
 import org.kingszelda.version2.service.CalculateService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
  * Created by shining.cui on 2017/7/15.
  */
+//@Service("calculateServiceV2")
 public class CalculateServiceImpl implements CalculateService {
 
     @Resource

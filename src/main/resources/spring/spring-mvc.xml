@@ -11,6 +11,9 @@
     <context:component-scan base-package="org.kingszelda"/>
     <mvc:annotation-driven/>
 
+    <!--下面是version2的配置，二选一均可-->
+
+    <!-- version2 配置方案1 -->
     <bean id="calculateServiceV2" class="org.springframework.aop.framework.ProxyFactoryBean">
         <!-- 需要代理的接口 -->
         <property name="proxyInterfaces" value="org.kingszelda.version2.service.CalculateService"/>
@@ -22,36 +25,39 @@
         <property name="interceptorNames">
             <!--这里的顺序对责任链顺序有直接影响，所以能合并的都可以合并在一个过滤器中，本例都可以合并到middleInterceptor中-->
             <list>
-                <value>middleInterceptor</value>
-                <value>beforeAdvisor</value>
-                <value>afterAdvisor</value>
+                <value>calculateMethodInterceptor</value>
+                <value>calculateBeforeAdvice</value>
+                <value>calculateAfterAdvice</value>
             </list>
         </property>
     </bean>
 
-    <!-- 业务前切点 -->
-    <bean id="beforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-        <constructor-arg ref="calculateBeforeAdvice"/>
-        <constructor-arg ref="pointcut"/>
-    </bean>
+    <!--&lt;!&ndash; version2 配置方案2 &ndash;&gt;-->
+    <!--&lt;!&ndash; 业务前切点 &ndash;&gt;-->
+    <!--<bean id="beforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
+        <!--<constructor-arg ref="calculateBeforeAdvice"/>-->
+        <!--<constructor-arg ref="pointcut"/>-->
+    <!--</bean>-->
 
-    <!-- 返回前切点 -->
-    <bean id="afterAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-        <constructor-arg ref="calculateAfterAdvice"/>
-        <constructor-arg ref="pointcut"/>
-    </bean>
+    <!--&lt;!&ndash; 返回前切点 &ndash;&gt;-->
+    <!--<bean id="afterAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
+        <!--<constructor-arg ref="calculateAfterAdvice"/>-->
+        <!--<constructor-arg ref="pointcut"/>-->
+    <!--</bean>-->
 
-    <!-- 环绕式切点，相对于before after throw,这是属于高一层设计，因为before等也是通过Interceptor实现的 -->
-    <bean id="middleInterceptor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-        <constructor-arg ref="calculateMethodInterceptor"/>
-        <constructor-arg ref="pointcut"/>
-    </bean>
+    <!--&lt;!&ndash; 环绕式切点，相对于before after throw,这是属于高一层设计，因为before等也是通过Interceptor实现的 &ndash;&gt;-->
+    <!--<bean id="middleInterceptor" class="org.springframework.aop.support.DefaultPointcutAdvisor">-->
+        <!--<constructor-arg ref="calculateMethodInterceptor"/>-->
+        <!--<constructor-arg ref="pointcut"/>-->
+    <!--</bean>-->
 
-    <!-- 定义切点位置，只有满足正则的才拦截，如果不配置切点，则拦截所有接口方法 -->
-    <bean id="pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-        <property name="pattern" value=".*version2.*add|.*version2.*sub"/>
-    </bean>
+    <!--&lt;!&ndash; 定义切点位置，只有满足正则的才拦截，如果不配置切点，则拦截所有接口方法 &ndash;&gt;-->
+    <!--<bean id="pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">-->
+        <!--<property name="pattern" value=".*version2.*add|.*version2.*sub"/>-->
+    <!--</bean>-->
 
+
+    <!-- 下面是version3的配置 -->
     <!-- 集成AspectJ的AOP功能 -->
     <aop:aspectj-autoproxy />
 
