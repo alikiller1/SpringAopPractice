@@ -1,11 +1,10 @@
 package org.kingszelda.version2.service.impl;
 
+import javax.annotation.Resource;
+
 import org.kingszelda.common.dao.AddDao;
 import org.kingszelda.common.dao.SubDao;
 import org.kingszelda.version2.service.CalculateService;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * Created by shining.cui on 2017/7/15.
@@ -19,7 +18,6 @@ public class CalculateServiceImpl implements CalculateService {
     @Resource
     private SubDao subDao;
 
-    @Override
     public int add(int first, int second) {
         //1.计算加法
         int result = first + second;
@@ -29,7 +27,6 @@ public class CalculateServiceImpl implements CalculateService {
         return result;
     }
 
-    @Override
     public int sub(int first, int second) {
         //1.计算加法
         int result = first - second;

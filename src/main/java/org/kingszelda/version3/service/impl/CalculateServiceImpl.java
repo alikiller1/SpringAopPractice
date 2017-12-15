@@ -19,7 +19,6 @@ public class CalculateServiceImpl implements CalculateService {
     @Resource
     private SubDao subDao;
 
-    @Override
     public int add(int first, int second) {
         //1.计算加法
         int result = first + second;
@@ -29,7 +28,6 @@ public class CalculateServiceImpl implements CalculateService {
         return result;
     }
 
-    @Override
     public int sub(int first, int second) {
         //1.计算加法
         int result = first - second;
